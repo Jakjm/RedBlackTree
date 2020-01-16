@@ -1,0 +1,49 @@
+Part 3
+a) When using HashSet, how can one influence the data structure's performance and space use? 
+
+If the hashing function is able to disperse the elements evenly over the indexes in the set, the 
+HashSet will perform very well - however, if the hashing method is prone to hash collisions, 
+another data structure will have to be used for the elements of the hashset that have the same 
+hash value. 
+
+Option One:
+If the data structure used for dealing with collisions is a linked list, this could mean that performance is still O(1)
+for insertion into the Set, but that could come at the cost of O(n) removal and search. 
+In cases where the hash function only occasionally causes collisions, and the linked list holds less than e.g. 5 items
+at any given time, this would outperform option 2. 
+
+However, in cases where the hash function is rarely giving out different values, the entire HashSet's performance would
+be degraded to O(n) for removal and search - which is not ideal for a data structure which is meant to provide O(1) 
+performance. 
+
+Option Two:
+If the data structure used is perhaps a self balancing BST, then we can guarantee O(log n) for all major operations,
+no matter how poor the hashing function is. 
+This is actually pretty ideal. Without collisions occurring at all or very infrequently we would get O(1) performance 
+for most set operations - and if the hashing function is horrible, we still get a guaranteed O(log n) performance no
+matter what. Even for problem sizes of one trillion items or more, since we have logarithmic performance,
+our operations are kept to the order of ~40 steps . 
+Compare that to the worst case for using linked lists, where the performance could degrade to the degree at least
+one trillion operations.
+
+
+b) Imagine a set implementation which uses heaps, instead of binary search trees. How
+would performance of such a data structure differ from the actual implementation you used
+in Part 1
+
+Both AVL and RB trees require O(log n) insertion time for each element. 
+This means that over N elements that are inserted, creating a tree requires O(n log n) time. 
+
+However constructing a heap requires only n time for N elements. 
+
+However, this hardly means that using heaps would improve our Set performance. 
+Heaps are not Binary Search Trees and have none of the useful search properties. 
+
+To implement a search over a heap for an element would require around linear time since there is no way of knowing 
+where in the heap the item would be stored - we can't narrow down the possibilities like we can for self balancing BSTs. 
+Similarly removing an element would require at least linear time in order to be able to find the element within the heap.
+The only operations that would be of particular use for the heap would be the min or maximum property - being able to 
+remove a certain number of minimum or maximum items in O(log n) time or check the max/min in O(1) time is not 
+something that can be done with a usual BST. 
+
+c)How are the TreeMap and TreeSet classes in Java related?

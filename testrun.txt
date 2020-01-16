@@ -1,0 +1,16 @@
+A4Set      1000 items   19 ms
+TreeSet    1000 items    9 ms
+HashSet    1000 items    3 ms
+
+A4Set     10000 items   33 ms
+TreeSet   10000 items   31 ms
+HashSet   10000 items   32 ms
+
+A4Set    100000 items  211 ms
+TreeSet  100000 items   94 ms
+HashSet  100000 items   65 ms
+
+A4Set   1000000 items 2346 ms
+TreeSet 1000000 items 1348 ms
+HashSet 1000000 items  560 ms
+
